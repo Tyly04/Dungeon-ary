@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Mobile Controller</title>
+		<link rel="stylesheet" href="../assets/bootstrap.min.css"/>
+		<script src="../assets/jquery.min.js"></script>
+		<script src="../assets/popper.min.js"></script>
+		<script src="../assets/bootstrap.min.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
+		<!-- The core Firebase JS SDK is always required and must be listed first -->
+		<script src="https://www.gstatic.com/firebasejs/6.3.3/firebase-app.js"></script>
+		<script src="https://www.gstatic.com/firebasejs/6.3.3/firebase-database.js"></script>
+		
+		<!-- TODO: Add SDKs for Firebase products that you want to use
+		     https://firebase.google.com/docs/web/setup#config-web-app -->
+		
+		<script>
+		  // Your web app's Firebase configuration
+		  var firebaseConfig = {
+		    apiKey: "AIzaSyCmUPI2LTN39ZfMGxtvxYJH9COsRELw60M",
+		    authDomain: "problematic-shooter.firebaseapp.com",
+		    databaseURL: "https://problematic-shooter.firebaseio.com",
+		    projectId: "problematic-shooter",
+		    storageBucket: "",
+		    messagingSenderId: "1031151616190",
+		    appId: "1:1031151616190:web:5037d37e447d9a8d"
+		  };
+		  // Initialize Firebase
+		  firebase.initializeApp(firebaseConfig);
+		</script>
+		<script src="../draw.js"></script>
+		<script src="main.js"></script>
+		<style>
+			body{
+				height: 100vh;
+			}
+			button{
+				border: none;
+				width: 50%;
+				height: 200px;
+				transition-duration: 0.5s;
+				box-shadow: 10px 10px #222222;
+			}
+			button:active{
+				box-shadow: 0px 0px;
+			}
+			button:hover{
+				box-shadow: 5px 5px #111111;
+			}
+			input{
+				width:500px;
+				height:200px;
+				font-size: 100px;
+			}
+			.col-sm:hover{
+				cursor:pointer;
+			}
+			p{
+				font-size: 100px;
+			}
+			.center{
+				margin: auto;
+				width: 50vw;
+				padding: 10px;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="text-center" style="width: 100vw; height: 100vh;" id="codeEnter">
+			<p class="align-middle center">Enter in the session code below:</p>
+			<form onsubmit="event.preventDefault(); connect()">
+			<input placeholder="Session ID" class="align-middle" id="sessionCode"/>
+			<p><input class="btn-primary" type="submit" value="Connect"/></p>
+			</form>
+		</div>
+		<div class="text-center" style="width:200px; height: 100vh; display:none;" id="interaction">
+			<p><button class="btn-primary center mt-5" id="message">Send Message</button></p>
+			<p>Sorry, there wasn't a lot of time to develop multiplayer features. Enjoy this demo and just wait until your friend dies.</p>
+		</div>
+	</body>
+</html>
