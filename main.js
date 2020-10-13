@@ -41,22 +41,24 @@ function beginGame(){
 	new p5();
 	createCanvas(window.innerWidth, window.innerHeight);
 	globalVars();
-	beginDraw(" Your Protagonist (Cannot erase)", game.TILE_SIZE, game.TILE_SIZE, "white", "black", game.TILE_SIZE/50, null, function(canvDat){
-		beginDraw(" Your Bullets (Forward is to the right)", game.TILE_SIZE/4, game.TILE_SIZE/4, "white", "black", game.TILE_SIZE/100, null, function(bulletDat){
-			game.playerTex = datURIFromData(canvDat.canvasData, game.TILE_SIZE, game.TILE_SIZE);
-			game.bulletTex = datURIFromData(bulletDat.canvasData, game.TILE_SIZE/4, game.TILE_SIZE/4);
-			var script = document.createElement("script");
-			script.src = "./game.js";
-			generateCode(function(){
-				firebase.database().ref(game.code).set({
-					code: game.code,
-					text: "Waiting for another player..."
+	Swal.fire("Check out my other projects at ambiguous-name.github.io").then(function(){
+		beginDraw(" Your Protagonist (Cannot erase)", game.TILE_SIZE, game.TILE_SIZE, "white", "black", game.TILE_SIZE/50, null, function(canvDat){
+			beginDraw(" Your Bullets (Forward is to the right)", game.TILE_SIZE/4, game.TILE_SIZE/4, "white", "black", game.TILE_SIZE/100, null, function(bulletDat){
+				game.playerTex = datURIFromData(canvDat.canvasData, game.TILE_SIZE, game.TILE_SIZE);
+				game.bulletTex = datURIFromData(bulletDat.canvasData, game.TILE_SIZE/4, game.TILE_SIZE/4);
+				var script = document.createElement("script");
+				script.src = "./game.js";
+				generateCode(function(){
+					firebase.database().ref(game.code).set({
+						code: game.code,
+						text: "Waiting for another player..."
+					});
+					firebase.database().ref(game.code).on('value', updateData);
+					document.head.appendChild(script);
+					initialize();
 				});
-				firebase.database().ref(game.code).on('value', updateData);
-				document.head.appendChild(script);
-				initialize();
 			});
-		});
+		});	
 	});
 }
 var updateData = function(dat){
